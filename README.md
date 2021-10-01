@@ -31,3 +31,11 @@ From the root directory,
 	- Starts the dev server. Do not use this for production.
 
 The dev server will now run on `http://localhost:3000`.
+
+### Database Setup (sqlite)
+We use a lightweight SQLite database, which (as of now) only needs to store each team's leverages from our simulations.
+**The following loads fake, mock data**
+
+1. Open `load_database.py` and change `TEAMS_CSV` to the absolute path of `nfl_teams.csv`, which is located in the root directory.
+2. `$ python load_database.py`
+	- This creates the SQLite db and populates it with 3 weeks of dummy data.
