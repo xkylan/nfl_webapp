@@ -14,6 +14,8 @@ If you would like to start up a dev server, call `$ npm start`.
 
 If you would like to build the components for production, call `$ npm build`. 
 
+The dev server is bound to 127.0.0.1 and port 5000 by default, reachable at `http://localhost:5000` or `http:127.0.0.1:5000`.
+
 ### Flask Setup
 The following is for dev use only, on your local machine (different procedure for production).
 
@@ -27,3 +29,5 @@ From the root directory,
 	- Download required libraries
 4. `$ flask run`
 	- Starts the dev server. Do not use this for production.
+
+The dev server will now run on `http://localhost:3000`.
