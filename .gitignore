@@ -1,0 +1,5 @@
+**/node_modules
+**/__pycache
+*.pyc
+*.DS_Store
+**/venv
