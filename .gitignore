@@ -2,4 +2,4 @@
 **/__pycache
 *.pyc
 *.DS_Store
-**/venv
+**/nfl_site
