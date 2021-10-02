@@ -1,5 +1,7 @@
 # K2 Football Stats Webapp
 
+### View the website at www.k2nflstats.com
+
 ## Dev Setup
 
 ### React Setup
