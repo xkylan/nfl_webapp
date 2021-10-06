@@ -8,7 +8,7 @@ from sqlalchemy import *
 import json
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
-CORS(app) #comment this on deployment
+#CORS(app) #comment this on deployment
 # api = Api(app)
 
 DB_URI = 'sqlite:///nfl_viz.sqlite'
@@ -96,7 +96,7 @@ def get_teams():
     return response
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1')
+    app.run(host='204.48.31.219')
 
 
 
