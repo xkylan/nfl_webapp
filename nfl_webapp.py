@@ -16,7 +16,6 @@ engine = create_engine(DB_URI)
 
 metadata = MetaData(engine)
 
-
 @app.route("/", defaults={'path':''})
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
@@ -96,9 +95,8 @@ def get_teams():
     return response
 
 if __name__ == "__main__":
-    app.run(host='204.48.31.219')
-
-
+    #app.run(host='204.48.31.219')
+    app.run(host="0.0.0.0")
 
 # api.add_resource(testAPIHandler, '/flask/hello')
 # api.add_resource(leverageAPIHandler, '/leverage')
