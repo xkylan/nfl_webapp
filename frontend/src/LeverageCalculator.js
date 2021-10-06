@@ -14,7 +14,7 @@ import axios from 'axios';
 
 IS_PRODUCTION = true;
 PRODUCTION_ADDRESS = "www.k2nflstats.com"
-DEVELOPMENT_ADDRESS = "127.0.0.1"
+DEVELOPMENT_ADDRESS = "127.0.0.1:5000"
 SERVER_BASEURL = IS_PRODUCTION ? PRODUCTION_ADDRESS : DEVELOPMENT_ADDRESS
 
 class LeverageCalculator extends Component {
@@ -142,7 +142,7 @@ class LeverageCalculator extends Component {
 		this.setCheckboxColors(colors);
 
 		// Create the leverage chart
-		d3.csv(SERVER_BASEURL + "leverage/" + team_id + "/csv",
+		d3.csv(SERVER_BASEURL + "/leverage/" + team_id + "/csv",
 		  // When reading the csv, I must format variables:
 		  function(d){
 		    return { 
