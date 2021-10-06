@@ -108,7 +108,6 @@ class LeverageCalculator extends Component {
 	// This function is called every time the user selects a new team to chart.
 	// It is also called when the component mounts with a default team.
 	updateGraph(team_id) {
-		console.log("server url:" + SERVER_BASEURL);
 		console.log("graph updated");
 		// Define the different leverages
 		const leverages = ["Playoff", "Division", "Bye"];
