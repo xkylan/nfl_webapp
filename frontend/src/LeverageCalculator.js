@@ -10,6 +10,12 @@ import Chip from '@material-ui/core/Chip';
 import { Icon, Box } from '@material-ui/core';
 import * as d3 from 'd3';
 import async from 'async';
+import axios from 'axios';
+
+IS_PRODUCTION = true;
+PRODUCTION_ADDRESS = "www.k2nflstats.com"
+DEVELOPMENT_ADDRESS = "127.0.0.1"
+SERVER_BASEURL = IS_PRODUCTION ? PRODUCTION_ADDRESS : DEVELOPMENT_ADDRESS
 
 class LeverageCalculator extends Component {
 	constructor(props) {
@@ -40,10 +46,12 @@ class LeverageCalculator extends Component {
 			team_id_to_team_name[team_id] = team_name;
 		}
 
+		/*
 		for (var _id of ALL_TEAMS) {
 			const img = new Image();
       img.src = "/team_logos/" + _id + ".png";
 		}
+		*/
 
 		// set the id/name maps and render the default leverage graph
 		this.setState({
@@ -134,7 +142,7 @@ class LeverageCalculator extends Component {
 		this.setCheckboxColors(colors);
 
 		// Create the leverage chart
-		d3.csv("http://127.0.0.1:5000/leverage/" + team_id + "/csv",
+		d3.csv(SERVER_BASEURL + "leverage/" + team_id + "/csv",
 		  // When reading the csv, I must format variables:
 		  function(d){
 		    return { 
@@ -178,7 +186,7 @@ class LeverageCalculator extends Component {
 			    		console.log(dataReady[i].values[d-1].opponent);
 					    d3.select(this)
 					      .append('image')
-					      .attr('xlink:href', "http://127.0.0.1:5000/team_logos/" + dataReady[i].values[d-1].opponent + ".png")
+					      .attr('xlink:href', SERVER_BASEURL + "/team_logos/" + dataReady[i].values[d-1].opponent + ".png")
 					      .attr('y',0)
 					      .attr('x', x => x)
 					      .attr('width',28)
