@@ -12,11 +12,6 @@ import * as d3 from 'd3';
 import async from 'async';
 import axios from 'axios';
 
-IS_PRODUCTION = true;
-PRODUCTION_ADDRESS = "www.k2nflstats.com"
-DEVELOPMENT_ADDRESS = "127.0.0.1:5000"
-SERVER_BASEURL = IS_PRODUCTION ? PRODUCTION_ADDRESS : DEVELOPMENT_ADDRESS
-
 class LeverageCalculator extends Component {
 	constructor(props) {
 		super(props);
@@ -113,6 +108,7 @@ class LeverageCalculator extends Component {
 	// This function is called every time the user selects a new team to chart.
 	// It is also called when the component mounts with a default team.
 	updateGraph(team_id) {
+		console.log("server url:" + SERVER_BASEURL);
 		console.log("graph updated");
 		// Define the different leverages
 		const leverages = ["Playoff", "Division", "Bye"];
@@ -142,7 +138,7 @@ class LeverageCalculator extends Component {
 		this.setCheckboxColors(colors);
 
 		// Create the leverage chart
-		d3.csv(SERVER_BASEURL + "/leverage/" + team_id + "/csv",
+		d3.csv("/leverage/" + team_id + "/csv",
 		  // When reading the csv, I must format variables:
 		  function(d){
 		    return { 
@@ -186,7 +182,7 @@ class LeverageCalculator extends Component {
 			    		console.log(dataReady[i].values[d-1].opponent);
 					    d3.select(this)
 					      .append('image')
-					      .attr('xlink:href', SERVER_BASEURL + "/team_logos/" + dataReady[i].values[d-1].opponent + ".png")
+					      .attr('xlink:href', "/team_logos/" + dataReady[i].values[d-1].opponent + ".png")
 					      .attr('y',0)
 					      .attr('x', x => x)
 					      .attr('width',28)
