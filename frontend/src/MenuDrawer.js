@@ -24,7 +24,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import LeverageCalculator from './LeverageCalculator';
 import WinProbability from './WinProbability';
 import HomePage from './HomePage';
-import logo from './rob-lowe.jpg'
 
 const drawerWidth = 240;
 
@@ -142,7 +141,7 @@ export default function MenuDrawer() {
             HBs Matter
           </Typography>
 
-          <img src={logo} className={classes.logo} alt="logo"/>
+          <img src={"/rob-lowe.jpg"} className={classes.logo} alt="logo"/>
         </Toolbar>
       </AppBar>
       <Drawer

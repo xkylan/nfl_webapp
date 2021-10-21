@@ -11,6 +11,7 @@ import { Icon, Box } from '@material-ui/core';
 import * as d3 from 'd3';
 import async from 'async';
 import axios from 'axios';
+import './LeverageCalculator.css';
 
 class LeverageCalculator extends Component {
 	constructor(props) {
@@ -334,18 +335,17 @@ class LeverageCalculator extends Component {
   render() {
   	return (
 			<div id="leverage-app">
-				<Box display="flex">
-					<Box m="auto">
-						<Typography variant="h3" style={{margin: "auto"}}>NFL Leverage Calculator</Typography>
+				<Box className="parent-box-center">
+					<Box className="child-box-center">
+						<Typography variant="h4">NFL Leverage Calculator</Typography>
 					</Box>
 				</Box>
 				<br />
 
-				<Paper>
 					<Grid
 						container
 						direction="row"
-						spacing={2}
+						spacing={1}
 						justifyContent="flex-start"
 					>
 						<Grid item xs={7}>
@@ -441,7 +441,7 @@ class LeverageCalculator extends Component {
 													<img id="team_logo" style={{width: "6vh"}} alt=""/>
 												</Grid>
 												<Grid item>
-													<Typography variant="h5" id="chart_title"></Typography>
+													<Typography variant="h6" id="chart_title"></Typography>
 												</Grid>
 											</Grid>
 										</Grid>
@@ -455,12 +455,59 @@ class LeverageCalculator extends Component {
 						</Grid>
 
 						<Grid item xs={5}>
-								<Paper style={{padding: "10px"}}>
-									Let P<sub>w</sub>(w) = P(playoffs | win in week <i>w</i>) and let P<sub>l</sub>(w) = P(playoffs | loss in week <i>w</i>). We then define the playoff leverage for week <i>w</i> as P<sub>w</sub>(w) - P<sub>l</sub>(w).
-								</Paper>
+							<Grid
+								container
+								direction="column"
+								spacing={2}
+								alignItems="center"
+							>
+								<Grid item>
+									<Paper className="mui-paper">
+											
+										<Box className="parent-box-center">
+											<Box className="child-box-center">
+												<Typography variant="h6"><u>What is playoff leverage?</u></Typography>
+											</Box>
+										</Box>
+
+										<div>
+											Playoff leverage is the difference between playoff probabilities given a win/loss in a given week. <br /><br />
+
+											For example: <br />
+											1. CLE has a 31% playoff probability given a win in week 6 <br />
+											2. CLE has a 21% playoff probability given a loss in week 6 <br />
+											3. Cleveland's week 6 playoff leverage is 31%-21% = 10%. <br />
+											<br />
+
+											In addition to playoff leverage, we simulate and present <b>bye</b> and <b>divisional</b> leverages for each team.
+										</div>
+									</Paper>
+								</Grid>
+
+								<Grid item>
+									<Paper className="mui-paper">
+										<details>
+											<summary>
+												<h4><u>How is playoff leverage calculated?</u></h4>
+											</summary>
+
+											More formally, we can define a team <i>t'</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
+
+											Let: <br />
+											P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
+											P<sub>l</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> loses in week <i>w</i>) <b>(2)</b> <br />
+
+											Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
+
+											Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
+											we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
+										</details>
+									</Paper>
+								</Grid>
+							</Grid>
 						</Grid>
 					</Grid>
-				</Paper>
+
 			</div>
 		)
   }

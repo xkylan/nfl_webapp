@@ -1,0 +1,15 @@
+summary > * {
+	display:  inline;
+}
+
+.mui-paper {
+	padding: 10px;
+}
+
+.parent-box-center {
+	display:  flex;
+}
+
+.child-box-center {
+	margin:  auto;
+}
