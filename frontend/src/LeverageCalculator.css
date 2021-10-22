@@ -21,3 +21,7 @@ summary > * {
 .description {
 	font-size: 12px;
 }
+
+.full-width-grid {
+	width:  100%;
+}
