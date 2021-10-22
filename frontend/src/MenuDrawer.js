@@ -104,18 +104,21 @@ export default function MenuDrawer() {
 
   const changePage = (e) => {
   	var next_path;
-  	switch(e.target.innerText) {
-  		case "Leverage Calculator":
-  			next_path = "/leverage";
-  			break;
-  		case "Win Probability Viz":
-  			next_path = "/wp";
-  			break;
-  		default:
-  			next_path = "/";
-  	};
-  	history.push(next_path);
-  	handleDrawerClose();
+    if (e.target.innerText) {
+      switch(e.target.innerText) {
+        case "Leverage Calculator":
+          next_path = "/leverage";
+          break;
+        case "Win Probability Viz":
+          next_path = "/wp";
+          break;
+        default:
+          next_path = "/";
+      };
+      history.push(next_path);
+      handleDrawerClose();
+    }
+  	
   };
 
   return (
