@@ -4,9 +4,12 @@ import {
 } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import MenuDrawer from './MenuDrawer';
+import { makeStyles } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
   const [getMessage, setGetMessage] = useState({})
+  const theme = createTheme();
 
 {/*  useEffect(()=>{
     axios.get('http://localhost:5000/flask/hello').then(response => {
@@ -19,19 +22,21 @@ function App() {
   }, []) */}
 
   return (
-    <HashRouter>
-      <div id="app">
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-        >
-          <Grid item>
-            <MenuDrawer />
+    <ThemeProvider theme={theme}>
+      <HashRouter>
+        <div id="app">
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+          >
+            <Grid item>
+              <MenuDrawer />
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-    </HashRouter>
+        </div>
+      </HashRouter>
+    </ThemeProvider>
   );
 }
 

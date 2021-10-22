@@ -1,13 +1,17 @@
 import { React, Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import Chip from '@material-ui/core/Chip';
-import { Icon, Box } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
+import { Icon, Box } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as d3 from 'd3';
 import async from 'async';
 import axios from 'axios';
@@ -463,14 +467,13 @@ class LeverageCalculator extends Component {
 							>
 								<Grid item>
 									<Paper className="mui-paper">
-											
 										<Box className="parent-box-center">
 											<Box className="child-box-center">
-												<Typography variant="h6"><u>What is playoff leverage?</u></Typography>
+												<Typography className="subtitle" variant="h6"><u>What is playoff leverage?</u></Typography>
 											</Box>
 										</Box>
 
-										<div>
+										<Typography className="description">
 											Playoff leverage is the difference between playoff probabilities given a win/loss in a given week. <br /><br />
 
 											For example: <br />
@@ -480,29 +483,34 @@ class LeverageCalculator extends Component {
 											<br />
 
 											In addition to playoff leverage, we simulate and present <b>bye</b> and <b>divisional</b> leverages for each team.
-										</div>
+										</Typography>
 									</Paper>
 								</Grid>
 
 								<Grid item>
-									<Paper className="mui-paper">
-										<details>
-											<summary>
-												<h4><u>How is playoff leverage calculated?</u></h4>
-											</summary>
+									<Accordion>
+						        <AccordionSummary
+						          expandIcon={<ExpandMoreIcon />}
+						          aria-controls="panel1a-content"
+						          id="panel1a-header"
+						        >
+						          <Typography className="subtitle">How is playoff leverage calculated?</Typography>
+						        </AccordionSummary>
+						        <AccordionDetails>
+						          <Typography className="description">
+						            More formally, we can define a team <i>t'</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
 
-											More formally, we can define a team <i>t'</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
+												Let: <br />
+												P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
+												P<sub>l</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> loses in week <i>w</i>) <b>(2)</b> <br />
 
-											Let: <br />
-											P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
-											P<sub>l</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> loses in week <i>w</i>) <b>(2)</b> <br />
+												Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
 
-											Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
-
-											Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
-											we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
-										</details>
-									</Paper>
+												Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
+												we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
+						          </Typography>
+						        </AccordionDetails>
+						      </Accordion>										
 								</Grid>
 							</Grid>
 						</Grid>

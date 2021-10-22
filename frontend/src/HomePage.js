@@ -2,13 +2,13 @@ import { React, Component, Fragment } from 'react';
 import {
   Route, Switch, useHistory
 } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import { CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import { CardActionArea, CardActions, CardContent, CardMedia } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Divider from '@mui/material/Divider';
 
 const useStyles = makeStyles({
   root: {
