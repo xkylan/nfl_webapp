@@ -5,7 +5,6 @@ import {
 import clsx from 'clsx';
 import { useTheme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -29,7 +28,6 @@ import HomePage from './HomePage';
 
 const drawerWidth = 240;
 
-const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

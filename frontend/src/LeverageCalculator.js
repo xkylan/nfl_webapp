@@ -1,22 +1,17 @@
-import { React, Component, Fragment } from 'react';
+import { React, Component } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Paper from '@mui/material/Paper';
-import Chip from '@mui/material/Chip';
-import { Icon, Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import * as d3 from 'd3';
-import async from 'async';
-import axios from 'axios';
 import './LeverageCalculator.css';
 
 const ALL_TEAMS = [

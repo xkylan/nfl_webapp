@@ -1,12 +1,9 @@
-import { React, Component, Fragment } from 'react';
-import {
-  Route, Switch, useHistory
-} from 'react-router-dom';
+import { React } from 'react';
+import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
-import { CardActionArea, CardActions, CardContent, CardMedia } from '@mui/material';
+import { CardActionArea, CardContent, CardMedia } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
 
