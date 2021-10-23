@@ -543,7 +543,7 @@ class LeverageCalculator extends Component {
 
 												Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
 
-												Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
+												Using the publicly available <a href="https://www.espn.com/nfl/fpi" target="_blank">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/" target="_blank">nflseedR</a>,
 												we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
 						          </Typography>
 						        </AccordionDetails>

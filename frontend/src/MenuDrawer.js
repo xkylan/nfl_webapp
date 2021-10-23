@@ -19,6 +19,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import HomeIcon from '@mui/icons-material/Home';
@@ -164,25 +165,25 @@ export default function MenuDrawer() {
         </div>
         <Divider />
         <List>
-        	<ListItem button key="Leverage Calculator" onClick={changePage}>
+        	<ListItemButton key="Leverage Calculator" onClick={changePage}>
         		<ListItemIcon>
         			<BarChartIcon />
         		</ListItemIcon>
         		<ListItemText primary="Leverage Calculator" />
-        	</ListItem>
-        	<ListItem button key="Win Probability Viz" onClick={changePage}>
+        	</ListItemButton>
+        	<ListItemButton disabled key="Win Probability Viz" onClick={changePage}>
         		<ListItemIcon>
         			<TimelineIcon />
         		</ListItemIcon>
         		<ListItemText primary="Win Probability Viz" />
-        	</ListItem>
+        	</ListItemButton>
 
-        	<ListItem button key="Home" onClick={changePage}>
+        	<ListItemButton key="Home" onClick={changePage}>
         		<ListItemIcon>
         			<HomeIcon />
         		</ListItemIcon>
         		<ListItemText primary="Home" />
-        	</ListItem>
+        	</ListItemButton>
         </List>
         <Divider />
       </Drawer>

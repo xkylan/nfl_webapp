@@ -35,8 +35,9 @@ export default function HomePage(props) {
       spacing={1}
       alignItems="center"
       justifyContent="center"
+      width="100%"
     >
-      <Grid item xs>
+      <Grid item xs={6}>
         <Card variant="outlined" className={classes.root} onClick={changeRoute} id="leverage_card">
           <CardActionArea>
             <CardMedia
@@ -61,7 +62,7 @@ export default function HomePage(props) {
       </Grid>
       
 
-      <Grid item xs>
+      <Grid item xs={6}>
         <Card variant="outlined" className={classes.root}>
           <CardActionArea>
             <CardMedia
