@@ -1,17 +1,53 @@
-import { React, Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import Chip from '@material-ui/core/Chip';
-import { Icon, Box } from '@material-ui/core';
+import { React, Component } from 'react';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Box from '@mui/material/Box';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Divider from '@mui/material/Divider';
 import * as d3 from 'd3';
-import async from 'async';
-import axios from 'axios';
 import './LeverageCalculator.css';
+
+const ALL_TEAMS = [
+	{"team_id": "ARI", "team_name": "Arizona Cardinals"},
+	{"team_id": "ATL", "team_name": "Atlanta Falcons"},
+	{"team_id": "BAL", "team_name": "Baltimore Ravens"},
+	{"team_id": "BUF", "team_name": "Buffalo Bills"},
+	{"team_id": "CAR", "team_name": "Carolina Panthers"},
+	{"team_id": "CHI", "team_name": "Chicago Bears"},
+	{"team_id": "CIN", "team_name": "Cincinnati Bengals"},
+	{"team_id": "CLE", "team_name": "Cleveland Browns"},
+	{"team_id": "DAL", "team_name": "Dallas Cowboys"},
+	{"team_id": "DEN", "team_name": "Denver Broncos"},
+	{"team_id": "DET", "team_name": "Detroit Lions"},
+	{"team_id": "GB", "team_name": "Green Bay Packers"},
+	{"team_id": "HOU", "team_name": "Houston Texans"},
+	{"team_id": "IND", "team_name": "Indianapolis Colts"},
+	{"team_id": "JAX", "team_name": "Jacksonville Jaguars"},
+	{"team_id": "KC", "team_name": "Kansas City Chiefs"},
+	{"team_id": "LV", "team_name": "Las Vegas Raiders"},
+	{"team_id": "LAC", "team_name": "Los Angeles Chargers"},
+	{"team_id": "LAR", "team_name": "Los Angeles Rams"},
+	{"team_id": "MIA", "team_name": "Miami Dolphins"},
+	{"team_id": "MIN", "team_name": "Minnesota Vikings"},
+	{"team_id": "NE", "team_name": "New England Patriots"},
+	{"team_id": "NO", "team_name": "New Orleans Saints"},
+	{"team_id": "NYG", "team_name": "New York Giants"},
+	{"team_id": "NYJ", "team_name": "New York Jets"},
+	{"team_id": "PHI", "team_name": "Philadelphia Eagles"},
+	{"team_id": "PIT", "team_name": "Pittsburgh Steelers"},
+	{"team_id": "SF", "team_name": "San Francisco 49ers"},
+	{"team_id": "SEA", "team_name": "Seattle Seahawks"},
+	{"team_id": "TB", "team_name": "Tampa Bay Buccaneers"},
+	{"team_id": "TEN", "team_name": "Tennessee Titans"},
+	{"team_id": "WAS", "team_name": "Washington Football Team"},
+]
 
 class LeverageCalculator extends Component {
 	constructor(props) {
@@ -63,6 +99,7 @@ class LeverageCalculator extends Component {
 	}
 
 	updateCurrTeam(e) {
+		console.log(e);
 		var team_id;
 		var curr_team;
 		if (e.target.outerText) {
@@ -70,9 +107,6 @@ class LeverageCalculator extends Component {
 			team_id = this.state.name_to_id[curr_team];
 		} else if (e.keyCode === 13 && e.target.value) {
 			console.log('user hit return to change team');
-			console.log(e);
-			console.log(document.getElementById("leverage_team_select").value);
-			console.log(e.target.value);
 			curr_team = e.target.value;
 			team_id = this.state.name_to_id[curr_team];
 			console.log(team_id);
@@ -86,9 +120,7 @@ class LeverageCalculator extends Component {
 		const leverages = ["Playoff", "Division", "Bye"];
 
 		for (var leverage of leverages) {
-			console.log(leverage);
 			var checkbox_label = document.getElementById(leverage.toLowerCase() + "_label");
-			console.log(checkbox_label);
 			checkbox_label.style.color = colorFunc(leverage);
 
 			document.getElementById(leverage.toLowerCase() + "_checkbox").style.color = colorFunc(leverage);
@@ -116,8 +148,8 @@ class LeverageCalculator extends Component {
 		var curr_team = this.state.id_to_name[team_id];
 
 		const margin = {top: 10, right: 30, bottom: 50, left: 60},
-	    width = 700 - margin.left - margin.right,
-	    height = 500 - margin.top - margin.bottom;
+	    width = 750 - margin.left - margin.right,
+	    height = 400 - margin.top - margin.bottom;
 
 	  // Update title with selected team and logo
 	  document.getElementById("chart_title").innerHTML = `${curr_team} Playoff Leverage`;
@@ -335,12 +367,12 @@ class LeverageCalculator extends Component {
   render() {
   	return (
 			<div id="leverage-app">
+{				/*
 				<Box className="parent-box-center">
 					<Box className="child-box-center">
-						<Typography variant="h4">NFL Leverage Calculator</Typography>
+						<Typography variant="h4" style={{paddingBottom: '1px'}}>NFL Leverage Calculator</Typography>
 					</Box>
-				</Box>
-				<br />
+				</Box>*/}
 
 					<Grid
 						container
@@ -355,66 +387,80 @@ class LeverageCalculator extends Component {
 								spacing={2}
 								alignItems="flex-start"
 							>
-								<Grid item>
+								<Grid item className="full-width-grid">
+									<Box className="parent-box-center">
+										<Box className="child-box-center">
+											<Typography variant="h4" style={{paddingBottom: '1px'}}>NFL Leverage Calculator</Typography>
+										</Box>
+									</Box>
+								</Grid>
+								<Grid item className="full-width-grid">
 									<Grid
 										container
 										direction="row"
 										alignItems="flex-end"
-										spacing={2}
+										spacing={1}
 									>
-										<Grid item>
+										<Grid item xs={5}>
 											<Autocomplete
 												id="leverage_team_select"
 												options={ALL_TEAMS}
 												getOptionLabel={(option) => option.team_name}
-												style={{width: "40vh"}}
-												autoComplete={true}
+												autoComplete
 												defaultValue={ALL_TEAMS[8]}
-												renderTags={(option) => {
-													return (
-														<Chip
-															icon={
-																<Icon>
-																	<img src={"/team_logos/" + option.team_id + ".png"} style={{width: "3vh"}} alt={option.team_id}/>
-																</Icon>
-															}
-															label={option.team_name}
-														/>
-													)
-												}}
-												renderOption={(option) => {
-													return (
-														<Fragment>
-															<Typography>{option.team_name}</Typography>
-															<img src={"/team_logos/" + option.team_id + ".png"} style={{width: "3vh", marginLeft: "1vh"}} alt={option.team_id}/>
-														</Fragment>
-													)
-												}}
 												renderInput={(params) => (
 													<TextField 
 														{...params} 
 														label="Select Team:"
+														inputProps={{
+															...params.inputProps
+														}}
 													/>
 												)}
+												/*
+												// not responding to clicks, not including team logos in the dropdown
+												renderOption={(props, option) => {
+                          return (
+                           <Fragment key={option.team_id + "_option"}>
+                           	<div display="inline">
+	                       			<Typography>{option.team_name}</Typography>
+	                       			<img src={"/team_logos/" + option.team_id + ".png"} style={{width: "3vh", marginLeft: "1vh"}} alt={option.team_id}/>
+	                       		</div>
+                           </Fragment>
+                          )
+                        }}
+                        */
+                        /*
+                        // only used when multiple options can be selected at once
+											  renderTags={(option, props) => {
+													console.log(option, props);
+													return (
+														<Chip
+															avatar={<Avatar src={"/team_logos/" + option.team_id + ".png"}/>}
+															label={option.team_name}
+															key={option.team_id + "_tag"}
+														/>
+													)
+												}} */
 												onChange={this.updateCurrTeam}
 											/>
 										</Grid>
 
-										<Grid item>
+										<Grid item xs="auto">
 											<FormControlLabel
 								        control={<Checkbox id="playoff_checkbox" name="playoff_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
 								        label={<Typography variant="h6" id="playoff_label">Playoff</Typography>}
 								      />
 								    </Grid>
 
-								    <Grid item>
+								    <Grid item xs="auto">
 											<FormControlLabel
 								        control={<Checkbox id="division_checkbox" name="division_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
 								        label={<Typography variant="h6" id="division_label">Division</Typography>}
 								      />
 								    </Grid>
 
-								    <Grid item>
+								    <Grid item xs="auto">
 											<FormControlLabel
 								        control={<Checkbox id="bye_checkbox" name="bye_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
 								        label={<Typography variant="h6" id="bye_label">Bye</Typography>}
@@ -423,34 +469,28 @@ class LeverageCalculator extends Component {
 								  </Grid>
 								</Grid>
 
-								<Grid item>
+								<Grid item className="full-width-grid">
 									<Grid
 										container
-										direction="column"
-										spacing={2}
+										direction="row"
 										alignItems="center"
+										justifyContent="center"
+										spacing={1}
 									>
 										<Grid item>
-											<Grid
-												container
-												direction="row"
-												alignItems="center"
-												spacing={1}
-											>
-												<Grid item>
-													<img id="team_logo" style={{width: "6vh"}} alt=""/>
-												</Grid>
-												<Grid item>
-													<Typography variant="h6" id="chart_title"></Typography>
-												</Grid>
-											</Grid>
+											<img id="team_logo" style={{width: "6vh"}} alt=""/>
 										</Grid>
-
 										<Grid item>
-											<div id="my_dataviz"></div>
+											<Typography variant="h6" id="chart_title"></Typography>
 										</Grid>
 									</Grid>
 								</Grid>
+
+
+								<Grid item>
+									<div id="my_dataviz"></div>
+								</Grid>
+
 							</Grid>
 						</Grid>
 
@@ -462,47 +502,52 @@ class LeverageCalculator extends Component {
 								alignItems="center"
 							>
 								<Grid item>
-									<Paper className="mui-paper">
-											
-										<Box className="parent-box-center">
-											<Box className="child-box-center">
-												<Typography variant="h6"><u>What is playoff leverage?</u></Typography>
-											</Box>
-										</Box>
+									<Accordion expanded>
+						        <AccordionSummary>
+						          <Typography className="subtitle"><b>What is playoff leverage?</b></Typography>
+						        </AccordionSummary>
+						        <Divider />
+						        <AccordionDetails>
+						        	<Typography variant="body1">
+												Playoff leverage is the difference between playoff probabilities given a win/loss in a given week. <br /><br />
 
-										<div>
-											Playoff leverage is the difference between playoff probabilities given a win/loss in a given week. <br /><br />
+												For example: <br />
+												1. CLE has a 31% playoff probability given a win in week 6 <br />
+												2. CLE has a 21% playoff probability given a loss in week 6 <br />
+												3. Cleveland's week 6 playoff leverage is 31%-21% = 10%. <br />
+												<br />
 
-											For example: <br />
-											1. CLE has a 31% playoff probability given a win in week 6 <br />
-											2. CLE has a 21% playoff probability given a loss in week 6 <br />
-											3. Cleveland's week 6 playoff leverage is 31%-21% = 10%. <br />
-											<br />
-
-											In addition to playoff leverage, we simulate and present <b>bye</b> and <b>divisional</b> leverages for each team.
-										</div>
-									</Paper>
+												In addition to playoff leverage, we simulate and present <b>bye</b> and <b>divisional</b> leverages for each team.
+											</Typography>
+										</AccordionDetails>
+									</Accordion>
 								</Grid>
 
 								<Grid item>
-									<Paper className="mui-paper">
-										<details>
-											<summary>
-												<h4><u>How is playoff leverage calculated?</u></h4>
-											</summary>
+									<Accordion>
+						        <AccordionSummary
+						          expandIcon={<ExpandMoreIcon />}
+						          aria-controls="panel1a-content"
+						          id="panel1a-header"
+						        >
+						          <Typography className="subtitle"><b>How is playoff leverage calculated?</b></Typography>
+						        </AccordionSummary>
+						        <Divider />
+						        <AccordionDetails>
+						          <Typography variant="body2">
+						            More formally, we can define a team <i>t'</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
 
-											More formally, we can define a team <i>t'</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
+												Let: <br />
+												P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
+												P<sub>l</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> loses in week <i>w</i>) <b>(2)</b> <br />
 
-											Let: <br />
-											P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
-											P<sub>l</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> loses in week <i>w</i>) <b>(2)</b> <br />
+												Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
 
-											Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
-
-											Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
-											we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
-										</details>
-									</Paper>
+												Using the publicly available <a href="https://www.espn.com/nfl/fpi">ESPN FPI</a> as a parameter in Lee Sharpe's <a href="https://nflseedr.com/">nflseedR</a>,
+												we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
+						          </Typography>
+						        </AccordionDetails>
+						      </Accordion>										
 								</Grid>
 							</Grid>
 						</Grid>
@@ -512,40 +557,5 @@ class LeverageCalculator extends Component {
 		)
   }
 }
-
-const ALL_TEAMS = [
-	{"team_id": "ARI", "team_name": "Arizona Cardinals"},
-	{"team_id": "ATL", "team_name": "Atlanta Falcons"},
-	{"team_id": "BAL", "team_name": "Baltimore Ravens"},
-	{"team_id": "BUF", "team_name": "Buffalo Bills"},
-	{"team_id": "CAR", "team_name": "Carolina Panthers"},
-	{"team_id": "CHI", "team_name": "Chicago Bears"},
-	{"team_id": "CIN", "team_name": "Cincinnati Bengals"},
-	{"team_id": "CLE", "team_name": "Cleveland Browns"},
-	{"team_id": "DAL", "team_name": "Dallas Cowboys"},
-	{"team_id": "DEN", "team_name": "Denver Broncos"},
-	{"team_id": "DET", "team_name": "Detroit Lions"},
-	{"team_id": "GB", "team_name": "Green Bay Packers"},
-	{"team_id": "HOU", "team_name": "Houston Texans"},
-	{"team_id": "IND", "team_name": "Indianapolis Colts"},
-	{"team_id": "JAX", "team_name": "Jacksonville Jaguars"},
-	{"team_id": "KC", "team_name": "Kansas City Chiefs"},
-	{"team_id": "LV", "team_name": "Las Vegas Raiders"},
-	{"team_id": "LAC", "team_name": "Los Angeles Chargers"},
-	{"team_id": "LAR", "team_name": "Los Angeles Rams"},
-	{"team_id": "MIA", "team_name": "Miami Dolphins"},
-	{"team_id": "MIN", "team_name": "Minnesota Vikings"},
-	{"team_id": "NE", "team_name": "New England Patriots"},
-	{"team_id": "NO", "team_name": "New Orleans Saints"},
-	{"team_id": "NYG", "team_name": "New York Giants"},
-	{"team_id": "NYJ", "team_name": "New York Jets"},
-	{"team_id": "PHI", "team_name": "Philadelphia Eagles"},
-	{"team_id": "PIT", "team_name": "Pittsburgh Steelers"},
-	{"team_id": "SF", "team_name": "San Francisco 49ers"},
-	{"team_id": "SEA", "team_name": "Seattle Seahawks"},
-	{"team_id": "TB", "team_name": "Tampa Bay Buccaneers"},
-	{"team_id": "TEN", "team_name": "Tennessee Titans"},
-	{"team_id": "WAS", "team_name": "Washington Football Team"},
-]
 
 export default LeverageCalculator;
