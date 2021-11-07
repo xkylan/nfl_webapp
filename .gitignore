@@ -3,4 +3,4 @@
 *.pyc
 *.DS_Store
 **/nfl_site
-/frontend/build
+/frontend/build/
