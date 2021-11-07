@@ -17,5 +17,5 @@ export default function WinProbability() {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }

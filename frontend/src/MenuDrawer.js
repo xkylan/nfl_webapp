@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Route, Switch, useHistory
+  Route, Switch, useHistory,
 } from 'react-router-dom';
 import clsx from 'clsx';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +16,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -85,16 +84,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   logo: {
-  	width: "60px",
-  	marginLeft: "auto"
-  }
+    width: '60px',
+    marginLeft: 'auto',
+  },
 }));
 
 export default function MenuDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  let history = useHistory();
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -105,22 +104,21 @@ export default function MenuDrawer() {
   };
 
   const changePage = (e) => {
-  	var next_path;
+    let next_path;
     if (e.target.innerText) {
-      switch(e.target.innerText) {
-        case "Leverage Calculator":
-          next_path = "/leverage";
+      switch (e.target.innerText) {
+        case 'Leverage Calculator':
+          next_path = '/leverage';
           break;
-        case "Win Probability Viz":
-          next_path = "/wp";
+        case 'Win Probability Viz':
+          next_path = '/wp';
           break;
         default:
-          next_path = "/";
+          next_path = '/';
       };
       history.push(next_path);
       handleDrawerClose();
     }
-  	
   };
 
   return (
@@ -146,7 +144,7 @@ export default function MenuDrawer() {
             HBs Matter
           </Typography>
 
-          <img src={"/rob-lowe.jpg"} className={classes.logo} alt="logo"/>
+          <img src={'/rob-lowe.jpg'} className={classes.logo} alt="logo"/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -165,25 +163,25 @@ export default function MenuDrawer() {
         </div>
         <Divider />
         <List>
-        	<ListItemButton key="Leverage Calculator" onClick={changePage}>
-        		<ListItemIcon>
-        			<BarChartIcon />
-        		</ListItemIcon>
-        		<ListItemText primary="Leverage Calculator" />
-        	</ListItemButton>
-        	<ListItemButton disabled key="Win Probability Viz" onClick={changePage}>
-        		<ListItemIcon>
-        			<TimelineIcon />
-        		</ListItemIcon>
-        		<ListItemText primary="Win Probability Viz" />
-        	</ListItemButton>
+          <ListItemButton key="Leverage Calculator" onClick={changePage}>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Leverage Calculator" />
+          </ListItemButton>
+          <ListItemButton disabled key="Win Probability Viz" onClick={changePage}>
+            <ListItemIcon>
+              <TimelineIcon />
+            </ListItemIcon>
+            <ListItemText primary="Win Probability Viz" />
+          </ListItemButton>
 
-        	<ListItemButton key="Home" onClick={changePage}>
-        		<ListItemIcon>
-        			<HomeIcon />
-        		</ListItemIcon>
-        		<ListItemText primary="Home" />
-        	</ListItemButton>
+          <ListItemButton key="Home" onClick={changePage}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItemButton>
         </List>
         <Divider />
       </Drawer>
@@ -197,15 +195,15 @@ export default function MenuDrawer() {
 
         <Switch>
           <Route path="/leverage"
-            render ={ props=> <LeverageCalculator {...props} />}
+            render ={ (props)=> <LeverageCalculator {...props} />}
           />
 
           <Route path="/wp"
-            render ={ props=> <WinProbability {...props} />}
+            render ={ (props)=> <WinProbability {...props} />}
           />
 
           <Route exact path="/"
-            render ={ props=> <HomePage {...props} />}
+            render ={ (props)=> <HomePage {...props} />}
           />
         </Switch>
       </main>
