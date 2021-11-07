@@ -1,32 +1,35 @@
-import { React } from 'react';
-import { useHistory } from 'react-router-dom';
+import {React} from 'react';
+import {useHistory} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import { CardActionArea, CardContent, CardMedia } from '@mui/material';
+import {CardActionArea, CardContent, CardMedia} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
 
 const useStyles = makeStyles({
   root: {
-    width: 520
+    width: 520,
   },
   thumbnail: {
     height: 400,
-    margin: '0 auto'
+    margin: '0 auto',
   },
 });
 
 export default function HomePage(props) {
   const classes = useStyles();
-  let history = useHistory();
+  const history = useHistory();
 
   const changeRoute = (e) => {
-    var elem = e.target?.parentElement?.parentElement;
-    if (elem?.id === "leverage_card" || elem?.parentElement?.id === "leverage_card") {
-      history.push("leverage");
+    const elem = e.target?.parentElement?.parentElement;
+    if (
+      elem?.id === 'leverage_card' ||
+      elem?.parentElement?.id === 'leverage_card'
+    ) {
+      history.push('leverage');
     }
-  }
+  };
 
   return (
     <Grid
@@ -45,7 +48,7 @@ export default function HomePage(props) {
               image="leverage_thumbnail.png"
               title="Leverage Calculator"
             />
-            
+
             <Divider />
 
             <CardContent>
@@ -54,13 +57,14 @@ export default function HomePage(props) {
               </Typography>
 
               <Typography variant="body2" component="p">
-                Visualize the playoff implications for a each game of a team's remaining schedule.
+                Visualize the playoff implications for a each game of a
+                team&apos;s remaining schedule.
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       </Grid>
-      
+
 
       <Grid item xs={6}>
         <Card variant="outlined" className={classes.root}>
@@ -70,7 +74,7 @@ export default function HomePage(props) {
               image="win_probability.jpeg"
               title="Win Probability Aggregator"
             />
-            
+
             <Divider />
 
             <CardContent>
@@ -86,5 +90,5 @@ export default function HomePage(props) {
         </Card>
       </Grid>
     </Grid>
-  )
+  );
 }
