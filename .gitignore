@@ -4,3 +4,4 @@
 *.DS_Store
 **/nfl_site
 /frontend/build/
+/data_pipeline/.ipynb_checkpoints
