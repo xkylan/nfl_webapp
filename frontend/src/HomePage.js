@@ -1,7 +1,6 @@
 import {React} from 'react';
 import {useHistory} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import {CardActionArea, CardContent, CardMedia} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
@@ -9,11 +8,19 @@ import Divider from '@mui/material/Divider';
 
 const useStyles = makeStyles({
   root: {
-    width: 520,
+    margin: '0 auto',
+    justifyContent: 'space-between',
+    display: 'flex',
+  },
+  card: {
+    width: '42%',
+    marginLeft: 40,
+    marginRight: 40,
+    minWidth: 500,
+    maxWidth: 700,
   },
   thumbnail: {
     height: 400,
-    margin: '0 auto',
   },
 });
 
@@ -32,63 +39,51 @@ export default function HomePage(props) {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      spacing={1}
-      alignItems="center"
-      justifyContent="center"
-      width="100%"
-    >
-      <Grid item xs={6}>
-        <Card variant="outlined" className={classes.root} onClick={changeRoute} id="leverage_card">
-          <CardActionArea>
-            <CardMedia
-              className={classes.thumbnail}
-              image="leverage_thumbnail.png"
-              title="Leverage Calculator"
-            />
+    <div className={classes.root}>
+      <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
+        <CardActionArea>
+          <CardMedia
+            className={classes.thumbnail}
+            image="leverage_thumbnail.png"
+            title="Leverage Calculator"
+          />
 
-            <Divider />
+          <Divider />
 
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Leverage Calculator
-              </Typography>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              Leverage Calculator
+            </Typography>
 
-              <Typography variant="body2" component="p">
-                Visualize the playoff implications for a each game of a
-                team&apos;s remaining schedule.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Grid>
+            <Typography variant="body2" component="p">
+              Visualize the playoff implications for a each game of a
+              team&apos;s remaining schedule.
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
 
+      <Card variant="outlined" className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.thumbnail}
+            image="win_probability.jpeg"
+            title="Win Probability Aggregator"
+          />
 
-      <Grid item xs={6}>
-        <Card variant="outlined" className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.thumbnail}
-              image="win_probability.jpeg"
-              title="Win Probability Aggregator"
-            />
+          <Divider />
 
-            <Divider />
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              Win Probability Aggregator (coming soon)
+            </Typography>
 
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Win Probability Aggregator (coming soon)
-              </Typography>
-
-              <Typography variant="body2" component="p">
-                A consolidation of various play-by-play win probabilities.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Grid>
-    </Grid>
+            <Typography variant="body2" component="p">
+              A consolidation of various play-by-play win probabilities.
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 }

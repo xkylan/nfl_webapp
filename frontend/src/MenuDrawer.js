@@ -25,6 +25,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LeverageCalculator from './LeverageCalculator';
 import WinProbability from './WinProbability';
 import HomePage from './HomePage';
+import Paper from '@mui/material/Paper';
 
 const drawerWidth = 240;
 
@@ -75,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    width: '100%',
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -86,6 +88,14 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     width: '60px',
     marginLeft: 'auto',
+  },
+  footer: {
+    'position': 'absolute',
+    'bottom': 0,
+    'right': 0,
+    'font-size': 10,
+    'padding': 5,
+    'margin-right': 5,
   },
 }));
 
@@ -206,6 +216,11 @@ export default function MenuDrawer() {
             render ={ (props)=> <HomePage {...props} />}
           />
         </Switch>
+
+        <Paper className={classes.footer}>
+          Created by <a href="https://twitter.com/Ky1an">@Ky1an</a> and <a href="https://twitter.com/luckyprophet5">@LuckyProphet5</a> <br />
+          <a href="https://github.com/xkylan/nfl_webapp/tree/master">GitHub Repo</a>
+        </Paper>
       </main>
     </div>
   );
