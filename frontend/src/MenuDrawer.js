@@ -151,7 +151,7 @@ export default function MenuDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            HBs Matter
+            k2 NFL Stats
           </Typography>
 
           <img src={'/rob-lowe.jpg'} className={classes.logo} alt="logo"/>
