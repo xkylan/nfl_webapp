@@ -203,13 +203,6 @@ class LeverageCalculator extends Component {
               })])
               .range([0, width]);
 
-          const max = d3.max(data, function(d) {
-            return d.week;
-          });
-          console.log(max);
-          console.log(data);
-
-
           svg.append('g')
               .attr('transform', 'translate(0,' + height + ')')
               .call(
@@ -218,7 +211,6 @@ class LeverageCalculator extends Component {
               );
           svg.selectAll('.tick').each(function(d, i) {
             console.log(d, i);
-            // console.log(dataReady[i].values[d-1].opponent);
             d3.select(this)
                 .append('image')
                 .attr('xlink:href', '/team_logos/' + dataReady[0].values[i].opponent + '.png')
