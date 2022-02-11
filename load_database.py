@@ -1,27 +1,49 @@
 from sqlalchemy import *
-import pandas as pd
 import datetime
 import random
 import json
 import copy
 
 TEAMS_CSV = "/Users/kylan/Downloads/nfl_website/nfl_teams.csv"
+ALL_TEAMS = [
+  {'team_id': 'ARI', 'team_name': 'Arizona Cardinals'},
+  {'team_id': 'ATL', 'team_name': 'Atlanta Falcons'},
+  {'team_id': 'BAL', 'team_name': 'Baltimore Ravens'},
+  {'team_id': 'BUF', 'team_name': 'Buffalo Bills'},
+  {'team_id': 'CAR', 'team_name': 'Carolina Panthers'},
+  {'team_id': 'CHI', 'team_name': 'Chicago Bears'},
+  {'team_id': 'CIN', 'team_name': 'Cincinnati Bengals'},
+  {'team_id': 'CLE', 'team_name': 'Cleveland Browns'},
+  {'team_id': 'DAL', 'team_name': 'Dallas Cowboys'},
+  {'team_id': 'DEN', 'team_name': 'Denver Broncos'},
+  {'team_id': 'DET', 'team_name': 'Detroit Lions'},
+  {'team_id': 'GB', 'team_name': 'Green Bay Packers'},
+  {'team_id': 'HOU', 'team_name': 'Houston Texans'},
+  {'team_id': 'IND', 'team_name': 'Indianapolis Colts'},
+  {'team_id': 'JAX', 'team_name': 'Jacksonville Jaguars'},
+  {'team_id': 'KC', 'team_name': 'Kansas City Chiefs'},
+  {'team_id': 'LV', 'team_name': 'Las Vegas Raiders'},
+  {'team_id': 'LAC', 'team_name': 'Los Angeles Chargers'},
+  {'team_id': 'LAR', 'team_name': 'Los Angeles Rams'},
+  {'team_id': 'MIA', 'team_name': 'Miami Dolphins'},
+  {'team_id': 'MIN', 'team_name': 'Minnesota Vikings'},
+  {'team_id': 'NE', 'team_name': 'New England Patriots'},
+  {'team_id': 'NO', 'team_name': 'New Orleans Saints'},
+  {'team_id': 'NYG', 'team_name': 'New York Giants'},
+  {'team_id': 'NYJ', 'team_name': 'New York Jets'},
+  {'team_id': 'PHI', 'team_name': 'Philadelphia Eagles'},
+  {'team_id': 'PIT', 'team_name': 'Pittsburgh Steelers'},
+  {'team_id': 'SF', 'team_name': 'San Francisco 49ers'},
+  {'team_id': 'SEA', 'team_name': 'Seattle Seahawks'},
+  {'team_id': 'TB', 'team_name': 'Tampa Bay Buccaneers'},
+  {'team_id': 'TEN', 'team_name': 'Tennessee Titans'},
+  {'team_id': 'WAS', 'team_name': 'Washington Football Team'},
+]
 
-def read_teams_from_csv():
-	# load teams
-	df = pd.read_csv(TEAMS_CSV)
-	team_dicts = []
-	for _,row in df.iterrows():
-		curr_team = {
-			'team_id': row['team_id'], 
-			'team_name': row['team_name']
-		}
-		team_dicts.append(curr_team)
-	return team_dicts
 
 # TODO: replace with API to pull game data
 def populate_games(conn, team_dicts, games_table):
-	NUM_MOCK_WEEKS = 3
+	NUM_MOCK_WEEKS = 18
 
 	# get all teams in a set
 	all_teams = []
@@ -122,12 +144,16 @@ def main():
 	engine = create_engine(DB_URI)
 	conn = engine.connect()
 
+	# uncomment to have a clean test db
+	#conn.execute("drop table team")
+	#conn.execute("drop table game")
+
 	# Create a metadata instance
 	metadata = MetaData(engine)
 
 	team_table, games_table = create_tables(metadata)
 
-	team_dicts = read_teams_from_csv()
+	team_dicts = ALL_TEAMS
 	populate_teams(conn, team_dicts, team_table)
 	populate_games(conn, team_dicts, games_table)
 

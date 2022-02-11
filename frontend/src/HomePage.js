@@ -1,19 +1,29 @@
 import {React} from 'react';
 import {useHistory} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+// import Grid from '@mui/material/Grid';
 import {CardActionArea, CardContent, CardMedia} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
 
 const useStyles = makeStyles({
-  root: {
-    width: 520,
+  header: {
+    marginBottom: 15,
+  },
+  container: {
+    margin: '0 auto',
+    display: 'flex',
+  },
+  card: {
+    width: '42%',
+    marginLeft: 40,
+    marginRight: 40,
+    minWidth: 500,
+    maxWidth: 700,
   },
   thumbnail: {
     height: 400,
-    margin: '0 auto',
   },
 });
 
@@ -32,16 +42,86 @@ export default function HomePage(props) {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      spacing={1}
-      alignItems="center"
-      justifyContent="center"
-      width="100%"
-    >
-      <Grid item xs={6}>
-        <Card variant="outlined" className={classes.root} onClick={changeRoute} id="leverage_card">
+    /*
+    <div className={classes.root}>
+      <Grid
+        container
+        direction="column"
+        spacing={2}
+      >
+        <Grid item xs>
+          <Grid
+            container
+            direction="row"
+          >
+            <Grid item xs>
+              <Typography variant="h3">
+                Leverage Calculator
+              </Typography>
+            </Grid>
+
+            <Grid item xs>
+              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.thumbnail}
+                    image="leverage_thumbnail.png"
+                    title="Leverage Calculator"
+                  />
+
+                  <Divider />
+
+                  <CardContent>
+                    <Typography variant="h5" component="h2">
+                      Leverage Calculator
+                    </Typography>
+
+                    <Typography variant="body2" component="p">
+                      Visualize the playoff implications for a each game of a
+                      team&apos;s remaining schedule.
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.thumbnail}
+                image="win_probability.jpeg"
+                title="Win Probability Aggregator"
+              />
+
+              <Divider />
+
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  Win Probability Aggregator (coming soon)
+                </Typography>
+
+                <Typography variant="body2" component="p">
+                  A consolidation of various play-by-play win probabilities.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      </Grid>
+    </div>
+    */
+    <div>
+      <div className={classes.header}>
+        <Typography variant="h3">
+          Tools
+        </Typography>
+      </div>
+
+      <div className={classes.container}>
+        <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
           <CardActionArea>
             <CardMedia
               className={classes.thumbnail}
@@ -63,11 +143,8 @@ export default function HomePage(props) {
             </CardContent>
           </CardActionArea>
         </Card>
-      </Grid>
 
-
-      <Grid item xs={6}>
-        <Card variant="outlined" className={classes.root}>
+        <Card variant="outlined" className={classes.card}>
           <CardActionArea>
             <CardMedia
               className={classes.thumbnail}
@@ -88,7 +165,8 @@ export default function HomePage(props) {
             </CardContent>
           </CardActionArea>
         </Card>
-      </Grid>
-    </Grid>
+
+      </div>
+    </div>
   );
 }

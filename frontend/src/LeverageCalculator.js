@@ -170,7 +170,7 @@ class LeverageCalculator extends Component {
         // When reading the csv, I must format variables:
         function(d) {
           return {
-            week: d.week,
+            week: parseInt(d.week, 10),
             playoff_leverage: d.playoff_leverage,
             division_leverage: d.division_leverage,
             bye_leverage: d.bye_leverage,
@@ -211,19 +211,19 @@ class LeverageCalculator extends Component {
               );
           svg.selectAll('.tick').each(function(d, i) {
             console.log(d, i);
-            console.log(dataReady[i].values[d-1].opponent);
             d3.select(this)
                 .append('image')
-                .attr('xlink:href', '/team_logos/' + dataReady[i].values[d-1].opponent + '.png')
+                .attr('xlink:href', '/team_logos/' + dataReady[0].values[i].opponent + '.png')
                 .attr('y', 0)
                 .attr('x', (x) => x)
-                .attr('width', 28)
-                .attr('height', 28);
+                .attr('transform', 'translate(-20,14)')
+                .attr('width', 24)
+                .attr('height', 24);
           });
 
           svg.append('text')
               .attr('transform',
-                  'translate(' + (width/2) + ' ,' + (height + margin.top + 30) + ')')
+                  'translate(' + (width/2) + ' ,' + (height + margin.top + 35) + ')')
               .style('text-anchor', 'middle')
               .text('Week');
 
@@ -272,11 +272,12 @@ class LeverageCalculator extends Component {
           // first check if the given leverage is being displayed (if not, don't show tooltip)
             const leverage_checkbox = document.getElementById(d.leverage_type.toLowerCase() + '_checkbox');
             if (leverage_checkbox.checked) {
+              const leverage_percentage = d.value * 100;
               d3.select('#tooltip')
                   .html(`
                     Opponent: ${d.opponent}<br>
                     Week: ${d.week}<br>
-                    ${d.leverage_type} leverage: ${d.value}
+                    ${d.leverage_type} leverage: ${leverage_percentage.toFixed(2)}%
                   `)
                   .style('left', (event.x + 10) + 'px')
                   .style('top', (event.y - 20) + 'px')
@@ -407,19 +408,43 @@ class LeverageCalculator extends Component {
 
           <Grid item xs="auto">
             <FormControlLabel
-              control={<Checkbox id="playoff_checkbox" name="playoff_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
+              control={
+                <Checkbox
+                  id="playoff_checkbox"
+                  name="playoff_leverage"
+                  onChange={this.toggleLeverage}
+                  defaultChecked
+                  color="primary"
+                />
+              }
               label={<Typography variant="h6" id="playoff_label">Playoff</Typography>}
             />
           </Grid>
           <Grid item xs="auto">
             <FormControlLabel
-              control={<Checkbox id="division_checkbox" name="division_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
+              control={
+                <Checkbox
+                  id="division_checkbox"
+                  name="division_leverage"
+                  onChange={this.toggleLeverage}
+                  defaultChecked
+                  color="primary"
+                />
+              }
               label={<Typography variant="h6" id="division_label">Division</Typography>}
             />
           </Grid>
           <Grid item xs="auto">
             <FormControlLabel
-              control={<Checkbox id="bye_checkbox" name="bye_leverage" onChange={this.toggleLeverage} defaultChecked color="primary"/>}
+              control={
+                <Checkbox
+                  id="bye_checkbox"
+                  name="bye_leverage"
+                  onChange={this.toggleLeverage}
+                  defaultChecked
+                  color="primary"
+                />
+              }
               label={<Typography variant="h6" id="bye_label">Bye</Typography>}
             />
           </Grid>
