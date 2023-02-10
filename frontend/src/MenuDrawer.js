@@ -13,6 +13,7 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -25,7 +26,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import LeverageCalculator from './LeverageCalculator';
 import WinProbability from './WinProbability';
 import HomePage from './HomePage';
-import Paper from '@mui/material/Paper';
+import Blogs from './Blogs';
+
 
 const drawerWidth = 240;
 
@@ -90,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
   },
   footer: {
-    'position': 'absolute',
+    'position': 'fixed',
     'bottom': 0,
     'right': 0,
     'font-size': 10,
@@ -173,7 +175,7 @@ export default function MenuDrawer() {
         </div>
         <Divider />
         <List>
-          <ListItemButton key="Leverage Calculator" onClick={changePage}>
+          <ListItemButton disabled key="Leverage Calculator" onClick={changePage}>
             <ListItemIcon>
               <BarChartIcon />
             </ListItemIcon>
@@ -214,6 +216,10 @@ export default function MenuDrawer() {
 
           <Route exact path="/"
             render ={ (props)=> <HomePage {...props} />}
+          />
+
+          <Route path="/blogs"
+            render ={ (props)=> <Blogs {...props} />}
           />
         </Switch>
 
