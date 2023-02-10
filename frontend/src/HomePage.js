@@ -2,28 +2,31 @@ import {React} from 'react';
 import {useHistory} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
-// import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 import {CardActionArea, CardContent, CardMedia} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
+// import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles({
-  header: {
-    marginBottom: 15,
-  },
   container: {
     margin: '0 auto',
     display: 'flex',
   },
-  card: {
-    width: '42%',
-    marginLeft: 40,
-    marginRight: 40,
-    minWidth: 500,
-    maxWidth: 700,
-  },
+  // card: {
+  //   width: '100%',
+  // },
   thumbnail: {
-    height: 400,
+    height: 280,
+    width: '100%',
+  },
+  headline: {
+    paddingLeft: 20,
+    paddingTop: 30,
+  },
+  mainView: {
+    paddingLeft: '3%',
+    width: '100%',
   },
 });
 
@@ -33,117 +36,91 @@ export default function HomePage(props) {
 
   const changeRoute = (e) => {
     const elem = e.target?.parentElement?.parentElement;
+
     if (
       elem?.id === 'leverage_card' ||
       elem?.parentElement?.id === 'leverage_card'
     ) {
-      history.push('leverage');
+      // TODO: remove later history.push('leverage');
+    } else if (
+      elem?.id === 'blogs_card' ||
+      elem?.parentElement?.id === 'blogs_card'
+    ) {
+      history.push('blogs');
     }
   };
 
   return (
-    /*
-    <div className={classes.root}>
-      <Grid
-        container
-        direction="column"
-        spacing={2}
-      >
-        <Grid item xs>
-          <Grid
-            container
-            direction="row"
-          >
-            <Grid item xs>
-              <Typography variant="h3">
-                Leverage Calculator
-              </Typography>
-            </Grid>
-
-            <Grid item xs>
-              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.thumbnail}
-                    image="leverage_thumbnail.png"
-                    title="Leverage Calculator"
-                  />
-
-                  <Divider />
-
-                  <CardContent>
-                    <Typography variant="h5" component="h2">
-                      Leverage Calculator
-                    </Typography>
-
-                    <Typography variant="body2" component="p">
-                      Visualize the playoff implications for a each game of a
-                      team&apos;s remaining schedule.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          </Grid>
+    <>
+      <Grid container columnSpacing={3} rowSpacing={1} className={classes.mainView}>
+        <Grid item md={7} lg={8} xs={12}>
+          <Typography variant="h3" className={classes.headline}>
+            Recent Posts
+          </Typography>
         </Grid>
 
-        <Grid item xs>
-          <Card variant="outlined" className={classes.card}>
+        <Grid item md={5} lg={4} xs={12}>
+          <Typography variant="h3" className={classes.headline}>
+            Tools
+          </Typography>
+        </Grid>
+
+        <Grid item md={7} lg={8} xs={12}>
+          <Card variant="outlined" className={classes.card} onClick={changeRoute} id="blogs_card">
             <CardActionArea>
               <CardMedia
                 className={classes.thumbnail}
-                image="win_probability.jpeg"
-                title="Win Probability Aggregator"
+                image="sb_preview.jpg"
+                title="SB LVII Preview"
               />
 
               <Divider />
 
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  Win Probability Aggregator (coming soon)
+                  SB LVII Predictions: Start of a Dynasty?
                 </Typography>
 
                 <Typography variant="body2" component="p">
-                  A consolidation of various play-by-play win probabilities.
+                  Preview the big game with props and a prediction! <br /> <br />
+
+                  Posted on Thurs, Feb 9 2023 <br />
+                  By Kylan Sakata
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
         </Grid>
+
+        <Grid item md={5} lg={4} xs={12}>
+
+          <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
+            <CardActionArea>
+              <CardMedia
+                className={classes.thumbnail}
+                image="leverage_thumbnail.png"
+                title="Leverage Calculator"
+              />
+
+              <Divider />
+
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  Leverage Calculator (WIP)
+                </Typography>
+
+                <Typography variant="body2" component="p">
+                  Visualize the playoff implications for a each game of a
+                  team&apos;s remaining schedule.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+
+        </Grid>
       </Grid>
-    </div>
-    */
-    <div>
-      <div className={classes.header}>
-        <Typography variant="h3">
-          Tools
-        </Typography>
-      </div>
 
-      <div className={classes.container}>
-        <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
-          <CardActionArea>
-            <CardMedia
-              className={classes.thumbnail}
-              image="leverage_thumbnail.png"
-              title="Leverage Calculator"
-            />
-
-            <Divider />
-
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Leverage Calculator
-              </Typography>
-
-              <Typography variant="body2" component="p">
-                Visualize the playoff implications for a each game of a
-                team&apos;s remaining schedule.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-
+      {/*
         <Card variant="outlined" className={classes.card}>
           <CardActionArea>
             <CardMedia
@@ -165,8 +142,9 @@ export default function HomePage(props) {
             </CardContent>
           </CardActionArea>
         </Card>
+        */}
 
-      </div>
-    </div>
+      {/* </div>*/}
+    </>
   );
 }
