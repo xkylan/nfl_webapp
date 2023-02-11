@@ -216,7 +216,8 @@ export default function MenuDrawer() {
         </Routes>
 
         <Paper className={classes.footer}>
-          Created by <a href="https://twitter.com/Ky1an">@Ky1an</a> and <a href="https://twitter.com/luckyprophet5">@LuckyProphet5</a> <br />
+          Created by <a href="https://twitter.com/Ky1an">@Ky1an</a> and
+          <a href="https://twitter.com/luckyprophet5">@LuckyProphet5</a> <br />
           <a href="https://github.com/xkylan/nfl_webapp/tree/master">GitHub Repo</a>
         </Paper>
       </main>
