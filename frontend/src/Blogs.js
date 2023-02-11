@@ -7,11 +7,11 @@ import makeStyles from '@mui/styles/makeStyles';
 // import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import {styled} from '@material-ui/core/styles';
+import {styled} from '@mui/material/styles';
 
 const BlogPaper = styled(Paper)(({theme}) => ({
   alignItems: 'center',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     width: '98%',
     padding: 10,
   },
@@ -27,7 +27,7 @@ const BlogPaper = styled(Paper)(({theme}) => ({
 
 const MVPChart = styled('img')(({theme}) => ({
   border: '1px solid #555',
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     maxHeight: '60%',
     maxWidth: '50%',
   },
