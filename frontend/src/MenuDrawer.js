@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Route, Switch, useHistory,
+  Route, Routes, useNavigate,
 } from 'react-router-dom';
 import clsx from 'clsx';
 import {useTheme} from '@mui/material/styles';
@@ -105,7 +105,7 @@ export default function MenuDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -128,7 +128,7 @@ export default function MenuDrawer() {
         default:
           next_path = '/';
       };
-      history.push(next_path);
+      navigate(next_path);
       handleDrawerClose();
     }
   };
@@ -205,23 +205,15 @@ export default function MenuDrawer() {
       >
         <div className={classes.drawerHeader} />
 
-        <Switch>
-          <Route path="/leverage"
-            render ={ (props)=> <LeverageCalculator {...props} />}
-          />
+        <Routes>
+          <Route path="/leverage" element={<LeverageCalculator />} />
 
-          <Route path="/wp"
-            render ={ (props)=> <WinProbability {...props} />}
-          />
+          <Route path="/wp" element={<WinProbability />} />
 
-          <Route exact path="/"
-            render ={ (props)=> <HomePage {...props} />}
-          />
+          <Route exact path="/" element={<HomePage />} />
 
-          <Route path="/blogs"
-            render ={ (props)=> <Blogs {...props} />}
-          />
-        </Switch>
+          <Route path="/blogs" element={<Blogs />} />
+        </Routes>
 
         <Paper className={classes.footer}>
           Created by <a href="https://twitter.com/Ky1an">@Ky1an</a> and <a href="https://twitter.com/luckyprophet5">@LuckyProphet5</a> <br />
