@@ -1,13 +1,21 @@
 import React from 'react';
+// import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-// import Card from '@mui/material/Card';
-// import {CardActionArea, CardContent, CardMedia} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 // import Divider from '@mui/material/Divider';
 // import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import {styled} from '@mui/material/styles';
+
+const PREFIX = 'Blogs';
+
+const classes = {
+  header: `${PREFIX}-header`,
+  container: `${PREFIX}-container`,
+  headerImage: `${PREFIX}-headerImage`,
+  smallHeader: `${PREFIX}-smallHeader`,
+  chartWrapper: `${PREFIX}-chartWrapper`,
+};
 
 const BlogPaper = styled(Paper)(({theme}) => ({
   alignItems: 'center',
@@ -25,6 +33,33 @@ const BlogPaper = styled(Paper)(({theme}) => ({
   },
 }));
 
+const StyledBlogPaper = styled(BlogPaper)(({theme}) => ({
+  [`& .${classes.header}`]: {
+    marginBottom: 15,
+  },
+
+  [`&.${classes.container}`]: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  [`& .${classes.headerImage}`]: {
+    maxHeight: '45%',
+    maxWidth: '80%',
+  },
+
+  [`& .${classes.smallHeader}`]: {
+    textDecoration: 'underline',
+  },
+
+  [`& .${classes.chartWrapper}`]: {
+    margin: '0 auto',
+    justifyContent: 'center',
+    display: 'flex',
+    paddingTop: 10,
+  },
+}));
+
 const MVPChart = styled('img')(({theme}) => ({
   border: '1px solid #555',
   [theme.breakpoints.down('lg')]: {
@@ -37,34 +72,9 @@ const MVPChart = styled('img')(({theme}) => ({
   },
 }));
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    marginBottom: 15,
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  headerImage: {
-    maxHeight: '45%',
-    maxWidth: '80%',
-  },
-  smallHeader: {
-    textDecoration: 'underline',
-  },
-  chartWrapper: {
-    margin: '0 auto',
-    justifyContent: 'center',
-    display: 'flex',
-    paddingTop: 10,
-  },
-}));
-
 export default function Blogs() {
-  const classes = useStyles();
-
   return (
-    <BlogPaper elevation={4} className={classes.container}>
+    <StyledBlogPaper elevation={4} className={classes.container}>
       <Typography variant="h2">Super Bowl LVII Preview</Typography>
       <img
         src="sb_preview.jpg"
@@ -208,6 +218,6 @@ export default function Blogs() {
         winning the award given  an Eagles outright win. This sits above the QB SBMVP rate provided above
         (13/21 ~ 61.9%), and given the surplus of talent surrounding him, I’d avoid this too.<br /><br />
       </Typography>
-    </BlogPaper>
+    </StyledBlogPaper>
   );
 }

@@ -1,28 +1,42 @@
 import React from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'NavBar';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  menuButton: `${PREFIX}-menuButton`,
+  title: `${PREFIX}-title`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     flexGrow: 1,
   },
-  menuButton: {
+
+  [`& .${classes.menuButton}`]: {
     marginRight: theme.spacing(2),
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     flexGrow: 1,
-  },
+  }
 }));
 
 export default function NavBar() {
-  const classes = useStyles();
+
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -38,7 +52,7 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
+    </Root>
   );
-};
+}
 
