@@ -4,7 +4,9 @@ import {
 } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import MenuDrawer from './MenuDrawer';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import {
+  createTheme, ThemeProvider, StyledEngineProvider,
+} from '@mui/material/styles';
 
 // Root component for the react app
 function App() {

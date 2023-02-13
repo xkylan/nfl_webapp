@@ -379,12 +379,12 @@ class LeverageCalculator extends Component {
               defaultValue={ALL_TEAMS[8]}
               renderInput={(params) => (
                 <TextField
+                  variant="standard"
                   {...params}
                   label="Select Team:"
                   inputProps={{
                     ...params.inputProps,
-                  }}
-                />
+                  }} />
               )}
               onChange={this.updateCurrTeam}
               /*
@@ -414,7 +414,6 @@ class LeverageCalculator extends Component {
                   name="playoff_leverage"
                   onChange={this.toggleLeverage}
                   defaultChecked
-                  color="primary"
                 />
               }
               label={<Typography variant="h6" id="playoff_label">Playoff</Typography>}
@@ -428,7 +427,6 @@ class LeverageCalculator extends Component {
                   name="division_leverage"
                   onChange={this.toggleLeverage}
                   defaultChecked
-                  color="primary"
                 />
               }
               label={<Typography variant="h6" id="division_label">Division</Typography>}
@@ -442,7 +440,6 @@ class LeverageCalculator extends Component {
                   name="bye_leverage"
                   onChange={this.toggleLeverage}
                   defaultChecked
-                  color="primary"
                 />
               }
               label={<Typography variant="h6" id="bye_label">Bye</Typography>}
