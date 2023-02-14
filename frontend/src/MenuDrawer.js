@@ -1,10 +1,10 @@
 import React from 'react';
+import {styled} from '@mui/material/styles';
 import {
   Route, Routes, useNavigate,
 } from 'react-router-dom';
 import clsx from 'clsx';
 import {useTheme} from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -29,19 +29,38 @@ import HomePage from './HomePage';
 import Blogs from './Blogs';
 
 
-const drawerWidth = 240;
+const PREFIX = 'MenuDrawer';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  appBar: `${PREFIX}-appBar`,
+  appBarShift: `${PREFIX}-appBarShift`,
+  menuButton: `${PREFIX}-menuButton`,
+  hide: `${PREFIX}-hide`,
+  drawer: `${PREFIX}-drawer`,
+  drawerPaper: `${PREFIX}-drawerPaper`,
+  drawerHeader: `${PREFIX}-drawerHeader`,
+  content: `${PREFIX}-content`,
+  contentShift: `${PREFIX}-contentShift`,
+  logo: `${PREFIX}-logo`,
+  footer: `${PREFIX}-footer`,
+};
+
+const Root = styled('div')((
+    {theme},
+) => ({
+  [`&.${classes.root}`]: {
     display: 'flex',
   },
-  appBar: {
+
+  [`& .${classes.appBar}`]: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  appBarShift: {
+
+  [`& .${classes.appBarShift}`]: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
@@ -49,28 +68,34 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  menuButton: {
+
+  [`& .${classes.menuButton}`]: {
     marginRight: theme.spacing(2),
   },
-  hide: {
+
+  [`& .${classes.hide}`]: {
     display: 'none',
   },
-  drawer: {
+
+  [`& .${classes.drawer}`]: {
     width: drawerWidth,
     flexShrink: 0,
   },
-  drawerPaper: {
+
+  [`& .${classes.drawerPaper}`]: {
     width: drawerWidth,
   },
-  drawerHeader: {
+
+  [`& .${classes.drawerHeader}`]: {
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'flexEnd',
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
@@ -80,29 +105,34 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: -drawerWidth,
     width: '100%',
   },
-  contentShift: {
+
+  [`& .${classes.contentShift}`]: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
   },
-  logo: {
+
+  [`& .${classes.logo}`]: {
     width: '60px',
     marginLeft: 'auto',
   },
-  footer: {
+
+  [`& .${classes.footer}`]: {
     'position': 'fixed',
     'bottom': 0,
     'right': 0,
-    'font-size': 10,
+    'fontSize': 10,
     'padding': 5,
-    'margin-right': 5,
+    'marginRight': 5,
   },
 }));
 
+
+const drawerWidth = 240;
+
 export default function MenuDrawer() {
-  const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -134,7 +164,7 @@ export default function MenuDrawer() {
   };
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -221,7 +251,7 @@ export default function MenuDrawer() {
           <a href="https://github.com/xkylan/nfl_webapp/tree/master">GitHub Repo</a>
         </Paper>
       </main>
-    </div>
+    </Root>
   );
 }
 

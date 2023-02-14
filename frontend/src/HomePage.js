@@ -1,37 +1,44 @@
 import {React} from 'react';
+import {styled} from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import {CardActionArea, CardContent, CardMedia} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
-// import Stack from '@mui/material/Stack';
+const PREFIX = 'HomePage';
 
-const useStyles = makeStyles({
-  container: {
+const classes = {
+  container: `${PREFIX}-container`,
+  thumbnail: `${PREFIX}-thumbnail`,
+  headline: `${PREFIX}-headline`,
+  mainView: `${PREFIX}-mainView`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')({
+  [`& .${classes.container}`]: {
     margin: '0 auto',
     display: 'flex',
   },
   // card: {
   //   width: '100%',
   // },
-  thumbnail: {
+  [`& .${classes.thumbnail}`]: {
     height: 280,
     width: '100%',
   },
-  headline: {
+  [`& .${classes.headline}`]: {
     paddingLeft: 20,
     paddingTop: 30,
   },
-  mainView: {
+  [`& .${classes.mainView}`]: {
     paddingLeft: '3%',
     width: '100%',
   },
 });
 
 export default function HomePage(props) {
-  const classes = useStyles();
   const navigate = useNavigate();
 
   const changeRoute = (e) => {
@@ -51,7 +58,7 @@ export default function HomePage(props) {
   };
 
   return (
-    <>
+    (<Root>
       <Grid container columnSpacing={3} rowSpacing={1} className={classes.mainView}>
         <Grid item md={7} lg={8} xs={12}>
           <Typography variant="h3" className={classes.headline}>
@@ -119,7 +126,6 @@ export default function HomePage(props) {
 
         </Grid>
       </Grid>
-
       {/*
         <Card variant="outlined" className={classes.card}>
           <CardActionArea>
@@ -143,8 +149,7 @@ export default function HomePage(props) {
           </CardActionArea>
         </Card>
         */}
-
       {/* </div>*/}
-    </>
+    </Root>)
   );
 }
