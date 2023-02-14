@@ -494,7 +494,8 @@ class LeverageCalculator extends Component {
               <Divider />
               <AccordionDetails>
                 <Typography variant="body1">
-                  Playoff leverage is the difference between playoff probabilities given a win/loss in a given week. <br /><br />
+                  Playoff leverage is the difference between playoff probabilities given a
+                  win/loss in a given week. <br /><br />
 
                   For example: <br />
                   1. CLE has a 31% playoff probability given a win in week 6 <br />
@@ -502,7 +503,8 @@ class LeverageCalculator extends Component {
                   3. Cleveland&apos;s week 6 playoff leverage is 31%-21% = 10%. <br />
                   <br />
 
-                  In addition to playoff leverage, we simulate and present <b>bye</b> and <b>divisional</b> leverages for each team.
+                  In addition to playoff leverage, we simulate and present <b>bye</b> and
+                  <b>divisional</b> leverages for each team.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -520,7 +522,8 @@ class LeverageCalculator extends Component {
               <Divider />
               <AccordionDetails>
                 <Typography variant="body2">
-                  More formally, we can define a team <i>t&apos;</i>s playoff leverage in week <i>w</i> as PL(t, w). <br />
+                  More formally, we can define a team <i>t&apos;</i>s playoff leverage in
+                  week <i>w</i> as PL(t, w). <br />
 
                   Let: <br />
                   P<sub>w</sub>(t, w) = P(<i>t</i> makes playoffs | <i>t</i> wins in week <i>w</i>) <b>(1)</b> <br />
@@ -528,9 +531,12 @@ class LeverageCalculator extends Component {
 
                   Then PL(t, w) = P<sub>w</sub>(t, w) - P<sub>l</sub>(t, w). <b>(3)</b><br />
 
-                  Using the publicly available <a href="https://www.espn.com/nfl/fpi" target="_blank" rel="noopener noreferrer">ESPN FPI</a>
-                  as a parameter in Lee Sharpe&apos;s <a href="https://nflseedr.com/" target="_blank" rel="noopener noreferrer">nflseedR</a>,
-                  we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team. We aim to run weekly simulations.
+                  Using the publicly available
+                  <a href="https://www.espn.com/nfl/fpi" target="_blank" rel="noopener noreferrer">ESPN FPI</a>
+                  as a parameter in Lee Sharpe&apos;s
+                  <a href="https://nflseedr.com/" target="_blank" rel="noopener noreferrer">nflseedR</a>,
+                  we conduct simulations which directly produce <b>(1)</b> and <b>(2)</b> for each team.
+                  We aim to run weekly simulations.
                 </Typography>
               </AccordionDetails>
             </Accordion>

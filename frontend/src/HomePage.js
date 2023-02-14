@@ -1,5 +1,5 @@
 import {React} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 export default function HomePage(props) {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const changeRoute = (e) => {
     const elem = e.target?.parentElement?.parentElement;
@@ -41,12 +41,12 @@ export default function HomePage(props) {
       elem?.id === 'leverage_card' ||
       elem?.parentElement?.id === 'leverage_card'
     ) {
-      // TODO: remove later history.push('leverage');
+      // TODO: remove later navigate('leverage');
     } else if (
       elem?.id === 'blogs_card' ||
       elem?.parentElement?.id === 'blogs_card'
     ) {
-      history.push('blogs');
+      navigate('blogs');
     }
   };
 
