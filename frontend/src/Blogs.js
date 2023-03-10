@@ -1,8 +1,5 @@
 import React from 'react';
-// import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-// import Divider from '@mui/material/Divider';
-// import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import {styled} from '@mui/material/styles';
@@ -19,6 +16,8 @@ const classes = {
 
 const BlogPaper = styled(Paper)(({theme}) => ({
   alignItems: 'center',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   [theme.breakpoints.down('lg')]: {
     width: '98%',
     padding: 10,
@@ -41,6 +40,7 @@ const StyledBlogPaper = styled(BlogPaper)(({theme}) => ({
   [`&.${classes.container}`]: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
   },
 
   [`& .${classes.headerImage}`]: {
@@ -60,6 +60,10 @@ const StyledBlogPaper = styled(BlogPaper)(({theme}) => ({
   },
 }));
 
+const CenteredText = styled(Typography)(({theme}) => ({
+  textAlign: 'center',
+}));
+
 const MVPChart = styled('img')(({theme}) => ({
   border: '1px solid #555',
   [theme.breakpoints.down('lg')]: {
@@ -75,7 +79,7 @@ const MVPChart = styled('img')(({theme}) => ({
 export default function Blogs() {
   return (
     <StyledBlogPaper elevation={4} className={classes.container}>
-      <Typography variant="h2">Super Bowl LVII Preview</Typography>
+      <CenteredText variant="h2">Super Bowl LVII Preview</CenteredText>
       <img
         src="sb_preview.jpg"
         className={classes.headerImage}
@@ -192,10 +196,7 @@ export default function Blogs() {
         not win the award).
       </Typography>
       <Box className={classes.chartWrapper}>
-        <MVPChart
-          src="sbmvp_chart.png"
-          className={classes.sbmvpChart}
-        />
+        <MVPChart src="sbmvp_chart.png"/>
       </Box><br />
       <Typography variant="body1">
         From a pure box score look at these games, we can see that perhaps 2 or 3 skill players had a good enough

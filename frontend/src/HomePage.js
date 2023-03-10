@@ -36,6 +36,9 @@ const Root = styled('div')({
     paddingLeft: '3%',
     width: '100%',
   },
+  [`&.${classes.column}`]: {
+    width: '100%',
+  },
 });
 
 export default function HomePage(props) {
@@ -61,69 +64,75 @@ export default function HomePage(props) {
     (<Root>
       <Grid container columnSpacing={3} rowSpacing={1} className={classes.mainView}>
         <Grid item md={7} lg={8} xs={12}>
-          <Typography variant="h3" className={classes.headline}>
-            Recent Posts
-          </Typography>
+          <Grid container>
+            <Grid item lg={12}>
+              <Typography variant="h3" className={classes.headline}>
+                Recent Posts
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12} md={12} lg={11} className={classes.column}>
+              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="blogs_card">
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.thumbnail}
+                    image="sb_preview.jpg"
+                    title="SB LVII Preview"
+                  />
+
+                  <Divider />
+
+                  <CardContent>
+                    <Typography variant="h5" component="h2">
+                      SB LVII Predictions: Start of a Dynasty?
+                    </Typography>
+
+                    <Typography variant="body2" component="p">
+                      Preview the big game with props and a prediction! <br /> <br />
+
+                      Posted on Thurs, Feb 9 2023 <br />
+                      By Kylan Sakata
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid item md={5} lg={4} xs={12}>
-          <Typography variant="h3" className={classes.headline}>
-            Tools
-          </Typography>
-        </Grid>
+          <Grid container>
+            <Grid item lg={12}>
+              <Typography variant="h3" className={classes.headline}>
+                Tools
+              </Typography>
+            </Grid>
 
-        <Grid item md={7} lg={8} xs={12}>
-          <Card variant="outlined" className={classes.card} onClick={changeRoute} id="blogs_card">
-            <CardActionArea>
-              <CardMedia
-                className={classes.thumbnail}
-                image="sb_preview.jpg"
-                title="SB LVII Preview"
-              />
+            <Grid item>
+              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.thumbnail}
+                    image="leverage_thumbnail.png"
+                    title="Leverage Calculator"
+                  />
 
-              <Divider />
+                  <Divider />
 
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  SB LVII Predictions: Start of a Dynasty?
-                </Typography>
+                  <CardContent>
+                    <Typography variant="h5" component="h2">
+                      Leverage Calculator (WIP)
+                    </Typography>
 
-                <Typography variant="body2" component="p">
-                  Preview the big game with props and a prediction! <br /> <br />
-
-                  Posted on Thurs, Feb 9 2023 <br />
-                  By Kylan Sakata
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-
-        <Grid item md={5} lg={4} xs={12}>
-
-          <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
-            <CardActionArea>
-              <CardMedia
-                className={classes.thumbnail}
-                image="leverage_thumbnail.png"
-                title="Leverage Calculator"
-              />
-
-              <Divider />
-
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Leverage Calculator (WIP)
-                </Typography>
-
-                <Typography variant="body2" component="p">
-                  Visualize the playoff implications for a each game of a
-                  team&apos;s remaining schedule.
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-
+                    <Typography variant="body2" component="p">
+                      Visualize the playoff implications for a each game of a
+                      team&apos;s remaining schedule.
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
       {/*
