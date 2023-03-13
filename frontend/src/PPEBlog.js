@@ -68,6 +68,7 @@ const CenteredText = styled(Typography)(({theme}) => ({
 export default function PPEBlog() {
   return (
     <StyledBlogPaper elevation={4} className={classes.container}>
+      <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
       <CenteredText variant="h3">NHL Power Play Efficiency</CenteredText>
       <img
         src="ppe_preview.png"

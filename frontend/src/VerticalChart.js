@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import {styled} from '@mui/material/styles';
 
-const PREFIX = ' VerticalChart';
+const PREFIX = 'VerticalChart';
 
 const classes = {
   borderedChart: `${PREFIX}-borderedChart`,
