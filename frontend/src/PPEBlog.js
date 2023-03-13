@@ -128,7 +128,7 @@ export default function PPEBlog() {
         to do so.
       </Typography>
 
-      <Typography variant="h5">Biggest Winners/Losers of PPE vs PP%</Typography>
+      <Typography variant="h5">Biggest Winners/Losers of PPE</Typography>
       <Typography variant="body1">
         Let’s define <b>residual</b> as the difference between PPE and PP%: PPE - PP%. A high residual means that a
         team’s power play was more efficient than the box score PP% indicated and a low or negative residual means
@@ -151,7 +151,7 @@ export default function PPEBlog() {
         power plays is emphasized more at the extremes by PP%.
       </Typography>
 
-      <Typography variant="h5">Regular Season Overtime Power Plays</Typography>
+      <Typography variant="h5">Regular Season OT Power Plays</Typography>
       <Typography variant="body1">
         Overtime hockey is a thrilling watch, whether in a regular season or playoff game. In the playoffs,
         overtime is treated as a true extra period, with the default 5 on 5 hockey. In 2015, the NHL implemented
@@ -198,7 +198,7 @@ export default function PPEBlog() {
         OT, you give the other team a:
       </Typography>
       <HorizontalChart img_src="./ppe_pics/ot_wp.png" bordered={true}/>
-      <br /><br />
+      <br />
 
       <Typography variant="body1">
         Not Great.<br /><br />
@@ -265,13 +265,12 @@ export default function PPEBlog() {
 
         4 on 4 scoring is also down about 10%, though the sample size is significantly smaller and could be
         attributed to a focus on puck possession and defensive integrity since teams understand the volatility
-        of 4v4 scoring.
+        of 4v4 scoring.<br />
       </Typography>
 
-      <Typography variant="h4">2022 Projections/Standings</Typography>
+      <Typography variant="h5">The 2022-23 Oilers</Typography>
+      <Typography variant="caption">Connor McDavid and Edmonton’s Historic Power Play</Typography>
       <Typography variant="body1"><i>(As of March 7, 2023)</i></Typography>
-
-      <Typography variant="h5">Connor McDavid and Edmonton’s Historic Power Play</Typography>
 
       <Typography variant="body1">
         Connor McDavid is leading an unbelievable power play in Edmonton this year. Through 65 games, McJesus
