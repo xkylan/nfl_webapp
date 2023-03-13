@@ -26,7 +26,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import LeverageCalculator from './LeverageCalculator';
 import WinProbability from './WinProbability';
 import HomePage from './HomePage';
-import Blogs from './Blogs';
+import SuperBowlBlog from './SuperBowlBlog';
+import PPEBlog from './PPEBlog';
 
 
 const PREFIX = 'MenuDrawer';
@@ -242,7 +243,9 @@ export default function MenuDrawer() {
 
           <Route exact path="/" element={<HomePage />} />
 
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/super_bowl" element={<SuperBowlBlog />} />
+
+          <Route path="/blogs/power_play_efficiency" element={<PPEBlog />} />
         </Routes>
 
         <Paper className={classes.footer}>

@@ -22,7 +22,8 @@
         "require-jsdoc": 0,
         "max-len": [1, 120],
         "camelcase": 0,
-        "no-invalid-this": 1
+        "no-invalid-this": 1,
+        "react/prop-types": "off"
     },
     "settings": {
         "react": {

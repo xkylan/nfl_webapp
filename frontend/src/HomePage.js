@@ -1,11 +1,11 @@
 import {React} from 'react';
 import {styled} from '@mui/material/styles';
-import {useNavigate} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import {CardActionArea, CardContent, CardMedia} from '@mui/material';
 import Divider from '@mui/material/Divider';
+import BlogPreview from './BlogPreview';
 const PREFIX = 'HomePage';
 
 const classes = {
@@ -21,9 +21,6 @@ const Root = styled('div')({
     margin: '0 auto',
     display: 'flex',
   },
-  // card: {
-  //   width: '100%',
-  // },
   [`& .${classes.thumbnail}`]: {
     height: 280,
     width: '100%',
@@ -42,29 +39,14 @@ const Root = styled('div')({
 });
 
 export default function HomePage(props) {
-  const navigate = useNavigate();
-
-  const changeRoute = (e) => {
-    const elem = e.target?.parentElement?.parentElement;
-
-    if (
-      elem?.id === 'leverage_card' ||
-      elem?.parentElement?.id === 'leverage_card'
-    ) {
-      // TODO: remove later navigate('leverage');
-    } else if (
-      elem?.id === 'blogs_card' ||
-      elem?.parentElement?.id === 'blogs_card'
-    ) {
-      navigate('blogs');
-    }
-  };
+  const SB_BLOG_ROUTE = 'blogs/super_bowl';
+  const PPE_BLOG_ROUTE = 'blogs/power_play_efficiency';
 
   return (
     (<Root>
-      <Grid container columnSpacing={3} rowSpacing={1} className={classes.mainView}>
+      <Grid container columnSpacing={3} className={classes.mainView}>
         <Grid item md={7} lg={8} xs={12}>
-          <Grid container>
+          <Grid container rowSpacing={2}>
             <Grid item lg={12}>
               <Typography variant="h3" className={classes.headline}>
                 Recent Posts
@@ -72,44 +54,42 @@ export default function HomePage(props) {
             </Grid>
 
             <Grid item xs={12} md={12} lg={11} className={classes.column}>
-              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="blogs_card">
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.thumbnail}
-                    image="sb_preview.jpg"
-                    title="SB LVII Preview"
-                  />
-
-                  <Divider />
-
-                  <CardContent>
-                    <Typography variant="h5" component="h2">
-                      SB LVII Predictions: Start of a Dynasty?
-                    </Typography>
-
-                    <Typography variant="body2" component="p">
-                      Preview the big game with props and a prediction! <br /> <br />
-
-                      Posted on Thurs, Feb 9 2023 <br />
-                      By Kylan Sakata
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <BlogPreview
+                id="ppe_blog"
+                image_src="ppe_preview.png"
+                title="PPE: A Deep Dive into NHL Power Plays"
+                caption="Learn about Power Play Efficiency and the best (and worst) power play units."
+                post_date="Fri, Mar 10 2023"
+                url_route={PPE_BLOG_ROUTE}
+              />
             </Grid>
+
+
+            <Grid item xs={12} md={12} lg={11} className={classes.column}>
+              <BlogPreview
+                id="sb_blog"
+                image_src="sb_preview.jpg"
+                title="SB LVII Predictions: Start of a Dynasty?"
+                caption="Preview the big game with props and a prediction!"
+                post_date="Thurs, Feb 9 2023"
+                url_route={SB_BLOG_ROUTE}
+              />
+            </Grid>
+
+
           </Grid>
         </Grid>
 
         <Grid item md={5} lg={4} xs={12}>
-          <Grid container>
-            <Grid item lg={12}>
+          <Grid container rowSpacing={2}>
+            <Grid item lg={12} md={12} xs = {12}>
               <Typography variant="h3" className={classes.headline}>
                 Tools
               </Typography>
             </Grid>
 
             <Grid item>
-              <Card variant="outlined" className={classes.card} onClick={changeRoute} id="leverage_card">
+              <Card variant="outlined" id="leverage_card">
                 <CardActionArea>
                   <CardMedia
                     className={classes.thumbnail}
@@ -158,7 +138,6 @@ export default function HomePage(props) {
           </CardActionArea>
         </Card>
         */}
-      {/* </div>*/}
     </Root>)
   );
 }
